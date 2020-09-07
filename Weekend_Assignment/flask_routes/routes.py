@@ -57,5 +57,16 @@ def search_by_company():
     Success = SneakerListing.select_company(data)
     return jsonify({"Success": Success})
 
+"""
+curl -X POST http://localhost:5000/listings/add -H "Content-Type: application/json" -d '{"Name": "HypeBeast1", "Yr_release": 12082015, "Version_number": 221020, "Creator": "Partap", "OP": 127.0, "CP": 257.0, "Company": "Vans", "Contact_number": 3217628088, "Contact_email": "partap1@gmail.com"}'
+"""
+
+@app.route("/listings/all_items", methods=["GET"])
+def show_all():
+    total_list = SneakerListing.select_all()
+    return jsonify({"Sneaker_list": total_list})
+
+
+
 if __name__ == "__main__":
     app.run()

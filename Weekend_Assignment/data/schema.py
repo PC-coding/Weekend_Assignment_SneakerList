@@ -7,8 +7,8 @@ Name VARCHAR
 Yr_release INTEGER
 Version_number INTEGER
 Creator VARCHAR
-OP INTEGER  #OriginalPrice
-CP INTEGER  #CurrentPrice
+OP FLOAT  #OriginalPrice
+CP FLOAT  #CurrentPrice
 Company VARCHAR
 Contact_number INTEGER
 Contact_email VARCHAR
@@ -28,8 +28,8 @@ def schema(dbpath=DATAPATH):
                 Yr_release INTEGER,
                 Version_number INTEGER,
                 Creator VARCHAR,
-                OP INTEGER,
-                CP INTEGER,
+                OP FLOAT,
+                CP FLOAT,
                 Company VARCHAR,
                 Contact_number INTEGER,
                 Contact_email VARCHAR

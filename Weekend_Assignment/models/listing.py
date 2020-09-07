@@ -3,7 +3,7 @@ import os
 
 class SneakerListing:
 
-    tablename = "sneaker_listings"
+    tablename = "Sneaker_list"
     dbpath = ""
 
     def __init__(self, **kwargs):
@@ -40,7 +40,7 @@ class SneakerListing:
     def delete(cls, pk):
         with sqlite3.connect(cls.dbpath) as conn:
             cursor = conn.cursor()
-            sql = f"""DELETE FROM listings WHERE pk =?;"""
+            sql = f"""DELETE FROM sneakerlistings WHERE pk =?;"""
             values = (pk,)
             cursor.execute(sql, values)
             return True
@@ -53,7 +53,7 @@ class SneakerListing:
             sql = f"""SELECT * FROM {cls.tablename} WHERE Contact_number =?, Contact_email =?;"""
             values = (Contact_number, Contact_email,)
             cursor.execute(sql, values)
-            return cursor.fetchall()
+            return cursor.fetchone()
 
     @classmethod    
     def select_price(cls, where_clause):
@@ -61,7 +61,7 @@ class SneakerListing:
             cursor = conn.cursor()
             sql = f"""SELECT * FROM {cls.tablename} {where_clause};"""
             cursor.execute(sql)
-            return cursor.fetchall()
+            return cursor.fetchone()
 
     @classmethod   
     def select_company(cls, Company):
@@ -70,10 +70,19 @@ class SneakerListing:
             sql = f"""SELECT * FROM {cls.tablename} WHERE Company =?;"""
             values = (Company,)
             cursor.execute(sql, values)
-            return cursor.fetchall()
+            return cursor.fetchone()
 
 
     #bonus
     
     # @classmethod
     # def select_sneaker_sale(cls):
+
+    @classmethod
+    def select_all(cls):
+        with sqlite3.connect(cls.dbpath) as conn:
+            cursor = conn.cursor()
+            sql = f"""SELECT * FROM {cls.tablename};""" 
+            cursor.execute(sql)
+            return cursor.fetchall()
+        return []
