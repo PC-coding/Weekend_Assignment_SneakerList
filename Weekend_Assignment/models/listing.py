@@ -3,7 +3,7 @@ import os
 
 class SneakerListing:
 
-    tablename = "Sneaker_list"
+    tablename = "listings"
     dbpath = ""
 
     def __init__(self, **kwargs):

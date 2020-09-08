@@ -59,6 +59,8 @@ def search_by_company():
 
 """
 curl -X POST http://localhost:5000/listings/add -H "Content-Type: application/json" -d '{"Name": "HypeBeast1", "Yr_release": 12082015, "Version_number": 221020, "Creator": "Partap", "OP": 127.0, "CP": 257.0, "Company": "Vans", "Contact_number": 3217628088, "Contact_email": "partap1@gmail.com"}'
+curl -X POST http://localhost:5000/listings/person -H "Content-Type: application/json" -d '{"Contact_number": 3217628088, "Contact_email": "partap1@gmail.com"}'
+curl -X POST http://localhost:5000/listings/price -H "Content-Type: application/json" -d '{"CP": 777.0}'
 """
 
 @app.route("/listings/all_items", methods=["GET"])
