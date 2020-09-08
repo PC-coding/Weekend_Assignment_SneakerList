@@ -62,6 +62,10 @@ curl -X POST http://localhost:5000/listings/add -H "Content-Type: application/js
 curl -X POST http://localhost:5000/listings/person -H "Content-Type: application/json" -d '{"Contact_number": 3217628088, "Contact_email": "partap1@gmail.com"}'
 curl -X POST http://localhost:5000/listings/price -H "Content-Type: application/json" -d '{"CP": 777.0}'
 """
+@app.route ("/listings/percentage/<percent>", methods=["GET"])
+def search_by_sneakersale(percent):
+    reduction = SneakerListing.select_sneaker_sale(float(percent))
+    return jsonify({"Sale": reduction})
 
 @app.route("/listings/all_items", methods=["GET"])
 def show_all():

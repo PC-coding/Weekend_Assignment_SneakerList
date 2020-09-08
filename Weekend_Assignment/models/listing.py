@@ -53,15 +53,15 @@ class SneakerListing:
             sql = f"""SELECT * FROM {cls.tablename} WHERE Contact_number =?, Contact_email =?;"""
             values = (Contact_number, Contact_email,)
             cursor.execute(sql, values)
-            return cursor.fetchone()
+            return cursor.fetchall()
 
     @classmethod    
-    def select_price(cls, where_clause):
+    def select_price(cls, CP):
         with sqlite3.connect(cls.dbpath) as conn:
             cursor = conn.cursor()
-            sql = f"""SELECT * FROM {cls.tablename} {where_clause};"""
-            cursor.execute(sql)
-            return cursor.fetchone()
+            sql = f"""SELECT * FROM {cls.tablename} CP <?;"""
+            cursor.execute(sql, (CP,))
+            return cursor.fetchall()
 
     @classmethod   
     def select_company(cls, Company):
@@ -70,13 +70,16 @@ class SneakerListing:
             sql = f"""SELECT * FROM {cls.tablename} WHERE Company =?;"""
             values = (Company,)
             cursor.execute(sql, values)
-            return cursor.fetchone()
-
+            return cursor.fetchall()
 
     #bonus
-    
-    # @classmethod
-    # def select_sneaker_sale(cls):
+    @classmethod
+    def select_sneaker_sale(cls, percentage):
+        with sqlite3.connect(cls.dbpath) as conn:
+            cursor = conn.cursor()
+            sql = f"""SELECT * FROM {cls.tablename} WHERE OP - ?/100.0*OP > CP;"""
+            cursor.execute(sql, (percentage,))
+            return cursor.fetchall()
 
     @classmethod
     def select_all(cls):
